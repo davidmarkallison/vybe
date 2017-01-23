@@ -61,7 +61,7 @@
             <notes><![CDATA[Basic Code Structure:
 Classes]]></notes>
         </task>
-        <task id="20" name="Alpha" color="#ff3300" meeting="true" start="2016-02-15" duration="0" complete="0" expand="true">
+        <task id="20" name="Alpha" color="#ff3300" meeting="true" start="2017-02-15" duration="0" complete="0" expand="true">
             <notes><![CDATA[Basic Working Alpha Build
 ]]></notes>
         </task>
