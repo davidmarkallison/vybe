@@ -1,0 +1,40 @@
+html {
+	height: 100%
+}
+body {
+	background: url(../img/mbg.jpg);
+	background-size: cover;
+	color: white;
+}
+
+
+
+#wrap {
+  min-height: 100%;
+}
+
+#main {
+  overflow:auto;
+  padding-bottom:200px; /* this needs to be bigger than footer height*/
+}
+
+.footer {
+  position: relative;
+  margin-top: -200px; /* negative value of footer height */
+  height: 150px;
+  clear:both;
+  padding-top:20px;
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
