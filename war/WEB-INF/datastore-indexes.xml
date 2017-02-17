@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<datastore-indexes
+  autoGenerate="true">
+    <datastore-index kind="UserPreference" ancestor="false">
+        <property name="GoogleID" direction="asc" />
+        <property name="GoogleNickname" direction="asc" />
+        <property name="GenresInterests" direction="asc" />
+    </datastore-index>
+    <datastore-index kind="Genre" ancestor="false">
+        <property name="Name" direction="asc" />
+        <property name="Description" direction="asc" />
+        <property name="ExampleArtists" direction="asc" />
+    </datastore-index>
+    <datastore-index kind="Event" ancestor="false">
+        <property name="Name" direction="asc" />
+        <property name="Date" direction="desc" />
+        <property name="StartTime" direction="desc" />
+        <property name="EndTime" direction="desc" />
+        <property name="Genre" direction="asc" />
+        <property name="Venue" direction="asc" />
+    </datastore-index>
+</datastore-indexes>

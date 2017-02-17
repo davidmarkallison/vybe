@@ -37,7 +37,6 @@
 </head>
 <body>
 
-	
 	<!-- LOGIN FORM -->
 	<div class="text-center" style="padding:50px 0">
 		<div class="logo">Login</div>

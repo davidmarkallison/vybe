@@ -10,6 +10,7 @@
 <%@ page import="com.google.appengine.api.datastore.KeyFactory" %>
 <%@ page import="com.google.appengine.api.datastore.Query" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Date" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
@@ -42,6 +43,8 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+    
+    </script>
 </head>
 <body>
 	<!--[if lt IE 8]>
@@ -67,6 +70,29 @@
       	</div>
     </nav>
 
+
+	<!-- Testing out some DatastoreService code -->
+	<% 
+		//Key vybesKey = KeyFactory.createKey("Vybes", "davidtest1");
+		
+		// Place greeting in the same entity group as guestbook.
+		//Entity vybesUser = new Entity("vybesUser");
+		//vybesUser.setProperty("lastName", "Allison");
+		//vybesUser.setProperty("firstName", "David");
+		//vybesUser.setProperty("date", new Date());
+		//vybesUser.setProperty("email", "test@gmail.com");
+		//vybesUser.setProperty("gender", "m");
+		//vybesUser.setProperty("genreInterests", "gypsyjazz, jazzmanouche, rock, folk");
+		//DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+		//datastore.put(vybesUser);
+		
+		//Entity gypsyJazz = new Entity("genre");
+		//gypsyJazz.setProperty("name", "gypsyJazz");
+		//gypsyJazz.setProperty("description", "A lovely sound from 1930's Parisian clubs.");
+		//gypsyJazz.setProperty("exampleArtists", "djangoreinhardt, stochelorosenberg, jimmyrosenberg");
+		//datastore.put(gypsyJazz);
+		
+	%>
 <br>
 <br>
 <br>
@@ -99,12 +125,14 @@
 		
 	<div class="container">
 		<div class="panel panel-warning">
-	  		<div class="panel-heading">MICHAEL WENBORN TODO</div>
+	  		<div class="panel-heading">SELECT GENRES</div>
 	  		<div class="panel-body">
-	  			<p class="text-warning">Hi Michael, in order to make the Google App Engine structure work we'll need this page to be a cheeky splash page.</p>
-	  			<p class="text-warning">So I'm sure you can make it look sexy, just have a teaser like tagline and then buttons to go to the login page.</p>
-	  			<p class="text-warning">I'll make the buttons (it's actually the text in the warning/info panel above!), don't edit the G.A.E. stuff, but feel free to move them and style them :)</p>
-	  			<p class="text-warning">Cheers, David</p>
+	  			<select class="selectpicker text-info" multiple>
+					<option>Mustard</option>
+					<option>Ketchup</option>
+					<option>Relish</option>
+				</select>
+		
 	  		</div>
 		</div>
 	</div>
@@ -113,7 +141,7 @@
 	<div class="navbar navbar-fixed-bottom">
 		<hr>
 		<footer>
-			<div class="container">
+			<div class="container text-center">
 		    	<p>&copy; Vybes 2017</p>
 		    </div>
 		</footer>
@@ -121,20 +149,20 @@
 	
 	<!-- Google Analytics -->
    	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-       <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-       <script src="js/vendor/bootstrap.min.js"></script>
-       <script src="js/main.js"></script>
-       <script src="js/login.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/login.js"></script>
        
-       <!-- Change UA-XXXXX-X to be your site's ID. -->
-       <script>
-           (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-           function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-           e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-           e.src='//www.google-analytics.com/analytics.js';
-           r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-           ga('create','UA-XXXXX-X','auto');ga('send','pageview');
-       </script>	        
+    <!-- Change UA-XXXXX-X to be your site's ID. -->
+    <script>
+        (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+        function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+        e.src='//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+        ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+    </script>	        
     
 </body>
 </html>
