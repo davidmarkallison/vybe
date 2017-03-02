@@ -1,18 +1,17 @@
 package com.ukc.vybes;
 import java.io.IOException;
-import java.io.PrintWriter;
 
-import com.google.api.server.spi.auth.common.User;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+//import com.google.appengine.api.datastore.PreparedQuery;
+//import com.google.appengine.api.datastore.Query;
+//import com.google.appengine.api.datastore.Query.Filter;
+//import com.google.appengine.api.datastore.Query.FilterOperator;
+//import com.google.appengine.api.datastore.Query.FilterPredicate;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
-
-import java.io.IOException;
-//import javax.servlet.annotation.*;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,27 +26,44 @@ public class SetPreferencesServlet extends HttpServlet {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         UserService userService = UserServiceFactory.getUserService();
         com.google.appengine.api.users.User user = userService.getCurrentUser(); // has to be cast to avoid conflict
-        /**
-         * TODO Create a check to see if the user already has a preference.
-         * 		This will involve querying the DataStore using the userID (googleID variable).
-         */
+        
+        
         if (user != null) {
+        	
+            
+//            Filter propertyFilter = new FilterPredicate("GoogleID", FilterOperator.EQUAL, user.getUserId());
+//            Query queryUserID = new Query("UserPreference").setFilter(propertyFilter);
+            
         	String googleID = user.getUserId();
         	String googleName = user.getNickname();
-        	String genres = req.getParameter("GenrePreferences");
-            Entity userPreference = new Entity("UserPreference");
+        	String[] genres = req.getParameterValues("genres");
+        	String finalGenres = "";
+        	if (genres == null) {
+        		finalGenres = "No Preferences";
+        	} else {
+        		for(String s : genres){
+        			if(finalGenres == ""){
+        				finalGenres = finalGenres + s; 			// To avoid unnecessary commas at the start of the string
+        			} else {
+        				finalGenres = finalGenres + "," + s;
+        			}
+            	}
+        	}
+
+            Entity userPreference = new Entity("UserPreference", user.getUserId());
+            
             userPreference.setProperty("GoogleID", googleID);
             userPreference.setProperty("GoogleNickname", googleName);
-            userPreference.setProperty("GenresInterests", genres);
+            userPreference.setProperty("GenreInterests", finalGenres);
+    
             datastore.put(userPreference);
+        
         } else {
         	resp.sendRedirect("home.jsp");
         }
       
         // Need to work out how we're going to store the locations of the events
        
-        
-
         resp.sendRedirect("/home.jsp");
        
    }

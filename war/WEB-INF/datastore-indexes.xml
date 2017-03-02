@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<datastore-indexes
-  autoGenerate="true">
+<datastore-indexes autoGenerate="true">
+<!-- Start -->
+	
+	<!-- User Preference - Basically User Settings -->
     <datastore-index kind="UserPreference" ancestor="false">
         <property name="GoogleID" direction="asc" />
         <property name="GoogleNickname" direction="asc" />
         <property name="GenresInterests" direction="asc" />
     </datastore-index>
+    
+    <!-- Genre - Types of Music -->
     <datastore-index kind="Genre" ancestor="false">
         <property name="Name" direction="asc" />
         <property name="Description" direction="asc" />
         <property name="ExampleArtists" direction="asc" />
+        <property name="ParentGenre" direction="asc" />
     </datastore-index>
+    
+    <!-- Event - One per Night per Venue -->
     <datastore-index kind="Event" ancestor="false">
         <property name="Name" direction="asc" />
         <property name="Date" direction="desc" />
@@ -19,4 +26,18 @@
         <property name="Genre" direction="asc" />
         <property name="Venue" direction="asc" />
     </datastore-index>
+    
+    <!-- Venue - Nightclub, Bar, Concert Hall etc. -->
+    <datastore-index kind="Venue" ancestor="false">
+    	<property name="Name" direction="asc" />
+    	<property name="Description" direction="asc" />
+    	<property name="Address" direction="asc" />
+    	<property name="City" direction="asc" />
+    	<property name="Location" direction="asc" />
+    	<property name="Phone" direction="asc" />
+    	<property name="Email" direction="asc" />
+    	<property name="OpeningHours" direction="asc" />
+    </datastore-index>
+    
+<!-- END -->
 </datastore-indexes>

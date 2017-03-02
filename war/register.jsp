@@ -97,7 +97,7 @@
        						<label for="reg_agree">i agree with the terms and conditions <a href="#">terms</a></label>
        					</div>
        				</div>
-       				<button type="submit" action="/vybes" class="login-button"><i class="fa fa-chevron-right"></i></button>
+       				<button type="submit" class="login-button"><i class="fa fa-chevron-right"></i></button>
      			</div>
      			<div class="etc-login-form">
        				<p>already have an account? <a href="/home.jsp">login here</a></p>

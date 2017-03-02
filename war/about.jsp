@@ -9,9 +9,6 @@
 <%@ page import="com.google.appengine.api.datastore.Key" %>
 <%@ page import="com.google.appengine.api.datastore.KeyFactory" %>
 <%@ page import="com.google.appengine.api.datastore.Query" %>
-<%@ page import="com.google.appengine.api.datastore.PreparedQuery" %>
-<%@ page import="com.google.appengine.api.datastore.Query.FilterPredicate" %>
-<%@ page import="com.google.appengine.api.datastore.Query.FilterOperator" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Date" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -24,7 +21,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Vybes - Home</title>
+	<title>Vybes - About</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -49,6 +46,8 @@
     <script>
     $(document).ready(function(){
     	$().button('toggle');
+    	$('[data-toggle="tooltip"]').tooltip();   
+    	$('a').tooltip();
     }
     </script>
     
@@ -88,74 +87,28 @@
 				</ul>
        		</div><!--/.navbar-collapse -->
       	</div>
-    </nav>
-    
+	</nav>
 <br>
 <br>
 <br>
-	
-	<% if (user != null) { %>
-	
+	<!-- INFORMATION ABOUT VYBES DEVELOPERS -->
 	<div class="container">
-		<div class="panel panel-success">
-			<div class="panel-heading">You Are Logged In To Vybes</div>
-		  	<div class="panel-body text-success">
-				You are logged into Vybes using your Google Account. Your Google Account and its security is 
-				completely handled by Google's world-class, highly-experienced engineers. If you have any problem's with 
-				the account and how it works on Vybes, please contact Google. They will look after you. If you 
-				wish to log out of Vybes, click the button below.
+		<div class="panel panel-info">
+			<div class="panel-heading">Basic Information</div>
+		  	<div class="panel-body text-info">
+				Vybes is a project made in conjuction with the CO600 module offered by the <a href="kent.ac.uk">University of Kent</a>.
+				<br><br>
+				The project developers include 
+					<a href="#" class="text-info" data-toggle="tooltip" data-placement="bottom" data-original-title="German & Computing, BA">David Allison</a>, 
+					<a href="#" class="text-info" data-toggle="tooltip" data-placement="bottom" data-original-title="Computer Science, BA">Tom Robinson</a>, and  
+					<a href="#" class="text-info" data-toggle="tooltip" data-placement="bottom" data-original-title="Business & Computing, BA">Michael Wenborn</a>.
 			</div>
 		</div>
 		<!-- TODO center this button -->
 		<div class="text-center center-block">
-			<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>" class="btn btn-danger" role="button">Logout, <%= user.getNickname() %></a>
-		</div>
-		
-		<div class="panel panel-info">
-			<div class="panel-heading">You Are Logged In To Vybes</div>
-		  	<div class="panel-body text-info">
-		  			
-				<%
-				// Initialising Datastore and UserService
-		        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-			
-		        // Initialising query on kind 'Genre'
-		        Query queryUserPref = new Query("UserPreference");
-		        // Filter on User ID (this user)
-		        Filter userIdFilter = new FilterPredicate("GoogleID", FilterOperator.EQUAL, user.getUserId());
-		        
-		        // Results being fetched as list
-				PreparedQuery pq = datastore.prepare(queryUserPref);
-		        List<Entity> results = pq.asList(FetchOptions.Builder.withDefaults());
-				
-				for (Entity result : pq.asIterable()) {
-					String[] name = (String[]) result.getProperty("GenreInterests");
-					String parentGenre = (String) result.getProperty("ParentGenre");
-				}
-				%>
-		  	</div>
+			<a href="home.jsp" class="btn btn-primary center" role="button">Return Home</a>
 		</div>
 	</div>
-	
-	<% } else {%>
-	
-	<div class="container">
-		<div class="panel panel-danger">
-			<div class="panel-heading">You Are Not Logged In To Vybes</div>
-		  	<div class="panel-body text-danger">
-				If you wish to use Vybes to plan a night out, all you need to do is log in with a valid Google Account. 
-				All of your data is handled by Google and NOT sold on to third parties by Vybes. Your data is stored 
-				securely using Google's Cloud Services.
-			</div>
-		</div>
-		
-		<!-- TODO centre this button -->
-		<div class="text-center center-block">
-			<a href="<%= userService.createLoginURL(request.getRequestURI()) %>" class="btn btn-primary" role="button">Log in with your Google Account</a>
-		</div>
-	</div>
-	
-	<% } %>
 
 	<!-- Footer -->
 	<div class="navbar navbar-fixed-bottom">
@@ -183,9 +136,6 @@
         r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
         ga('create','UA-XXXXX-X','auto');ga('send','pageview');
     </script>	        
-    
-</body>
-</html>
 
-					
-					
+</body>
+</html>	

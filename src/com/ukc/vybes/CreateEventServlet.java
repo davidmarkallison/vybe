@@ -1,21 +1,22 @@
 package com.ukc.vybes;
 import java.io.IOException;
-import java.io.PrintWriter;
-
-import com.google.api.server.spi.auth.common.User;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.users.UserService;
-import com.google.appengine.api.users.UserServiceFactory;
+//import com.google.appengine.api.users.UserService;
+//import com.google.appengine.api.users.UserServiceFactory;
 
 
-import java.io.IOException;
-//import javax.servlet.annotation.*;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+/**
+ * 
+ * @author David Allison
+ * NEED TO COMMENT THIS FILE THE SAME WAY AS CreateVenueServlet.java.
+ *
+ */
+
 
 @SuppressWarnings("serial")
 
@@ -23,11 +24,8 @@ public class CreateEventServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-		// Initialising DataStore
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-        UserService userService = UserServiceFactory.getUserService();
-        com.google.appengine.api.users.User user = userService.getCurrentUser();
-        
+
         String name = req.getParameter("Name");
         String date = req.getParameter("Date");
         String startTime = req.getParameter("StartTime");
@@ -37,7 +35,7 @@ public class CreateEventServlet extends HttpServlet {
 
         Entity event = new Entity("Event");
 
-		event.setProperty("Name", name); // set the event's(entity) name property value from the form parameter input "event_name" (in the .jsp file)
+		event.setProperty("Name", name);
         event.setProperty("Date", date);
         event.setProperty("StartTime", startTime);
         event.setProperty("EndTime", endTime);

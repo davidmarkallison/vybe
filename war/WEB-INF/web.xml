@@ -15,6 +15,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/vybes</url-pattern>
 	</servlet-mapping>
 	
+	<!-- CREATING VENUES -->
+    <servlet>
+        <servlet-name>CreateVenueServlet</servlet-name>
+        <servlet-class>com.ukc.vybes.CreateVenueServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateVenueServlet</servlet-name>
+        <url-pattern>/createVenue</url-pattern>
+    </servlet-mapping>
+	
 	<!-- CREATING EVENTS -->
     <servlet>
         <servlet-name>CreateEventServlet</servlet-name>
@@ -23,6 +33,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
     <servlet-mapping>
         <servlet-name>CreateEventServlet</servlet-name>
         <url-pattern>/createEvent</url-pattern>
+    </servlet-mapping>
+    
+    <!-- CREATING GENRES -->
+    <servlet>
+        <servlet-name>CreateGenreServlet</servlet-name>
+        <servlet-class>com.ukc.vybes.CreateGenreServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreateGenreServlet</servlet-name>
+        <url-pattern>/createGenre</url-pattern>
     </servlet-mapping>
     
     <!-- SETTING PREFERENCES -->
