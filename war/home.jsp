@@ -10,6 +10,7 @@
 <%@ page import="com.google.appengine.api.datastore.KeyFactory" %>
 <%@ page import="com.google.appengine.api.datastore.Query" %>
 <%@ page import="com.google.appengine.api.datastore.PreparedQuery" %>
+<%@ page import="com.google.appengine.api.datastore.Query.Filter" %>
 <%@ page import="com.google.appengine.api.datastore.Query.FilterPredicate" %>
 <%@ page import="com.google.appengine.api.datastore.Query.FilterOperator" %>
 <%@ page import="java.util.List" %>
@@ -20,7 +21,9 @@
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]> <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="EN"> <!--<![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="EN">
+<!--<![endif]-->
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -114,25 +117,55 @@
 		<div class="panel panel-info">
 			<div class="panel-heading">You Are Logged In To Vybes</div>
 		  	<div class="panel-body text-info">
-		  			
+
 				<%
-				// Initialising Datastore and UserService
-		        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-			
-		        // Initialising query on kind 'Genre'
-		        Query queryUserPref = new Query("UserPreference");
-		        // Filter on User ID (this user)
-		        Filter userIdFilter = new FilterPredicate("GoogleID", FilterOperator.EQUAL, user.getUserId());
-		        
-		        // Results being fetched as list
-				PreparedQuery pq = datastore.prepare(queryUserPref);
-		        List<Entity> results = pq.asList(FetchOptions.Builder.withDefaults());
-				
-				for (Entity result : pq.asIterable()) {
-					String[] name = (String[]) result.getProperty("GenreInterests");
-					String parentGenre = (String) result.getProperty("ParentGenre");
-				}
+					// Initialising Datastore
+					DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+					// Set the filter to match the user's ID with the Google ID stored as an attribute in the datastore
+					Filter userFilter = new FilterPredicate("GoogleID", FilterOperator.EQUAL, user.getUserId());
+
+					// Initialising query on kind 'userPreference'
+					Query queryFetchPreferences = new Query("userPreference").setFilter(userFilter);
+					// Results being fetched as list
+					PreparedQuery pq = datastore.prepare(queryFetchPreferences);
+					List<Entity> results = pq.asList(FetchOptions.Builder.withDefaults()); // FIX: Currently returns empty list despite preferences being set 
+					// If the list is empty, the user has not set any preferences
+					if (results.isEmpty()) {
+					
 				%>
+				
+					<p>You have not set any preferences.</p>
+				<%
+				
+					} else {
+					
+				%>
+				
+					<p>You currently have an interest in:</p>
+				
+				<%
+
+						for (Entity result : pq.asIterable()) {
+							String genre = (String) result.getProperty("GenreInterests");
+				
+				%>
+				
+					<p><%= genre %></p>
+
+				<%
+						}
+					}
+				%>
+				// Results being fetched as list
+				//PreparedQuery pq = datastore.prepare(queryUserPref);
+		        //List<Entity> results = pq.asList(FetchOptions.Builder.withDefaults());
+				
+				//for (Entity result : pq.asIterable()) {
+				//	String[] name = (String[]) result.getProperty("GenreInterests");
+				//	String parentGenre = (String) result.getProperty("ParentGenre");
+				//}
+				
 		  	</div>
 		</div>
 	</div>
