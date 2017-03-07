@@ -132,11 +132,9 @@
 				</div>
 				<button value="submit" class="btn btn-success">Submit Changes</button>
 			</form>
-		</div>
-		
-		
+		</div>	
 	</div>
-
+<br><br><br>
 	<!-- Footer -->
 	<div class="navbar navbar-fixed-bottom">
 		<hr>

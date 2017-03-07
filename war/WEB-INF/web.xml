@@ -45,6 +45,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
         <url-pattern>/createGenre</url-pattern>
     </servlet-mapping>
     
+    <!-- VIEWING GENRE -->
+    <servlet>
+        <servlet-name>GenreServlet</servlet-name>
+        <servlet-class>com.ukc.vybes.GenreServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GenreServlet</servlet-name>
+        <url-pattern>/genre</url-pattern>
+    </servlet-mapping>
+    
     <!-- SETTING PREFERENCES -->
     <servlet>
     	<servlet-name>SetPreferencesServlet</servlet-name>
