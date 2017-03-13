@@ -85,49 +85,52 @@
     </nav>
 		        	        
 	<h3 align="center"><%= g %></h3>
+		<div class="container">
+			<%
+				// Initialising Datastore
+				DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 		
-	<%
-		// Initialising Datastore
-		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-
-		// Set the filter to match the user's ID with the Google ID stored as an attribute in the datastore
-		Filter userFilter = new FilterPredicate("Genre", FilterOperator.EQUAL, g);
-
-		// Initialising query on kind 'Event'
-		Query queryFetchEvents = new Query("Event").setFilter(userFilter); // .addSort("Date", SortDirection.DESCENDING)
-	
-		// Results being fetched as list
-		PreparedQuery pq = datastore.prepare(queryFetchEvents);
-		List<Entity> results = pq.asList(FetchOptions.Builder.withDefaults());
+				// Set the filter to match the user's ID with the Google ID stored as an attribute in the datastore
+				Filter userFilter = new FilterPredicate("Genre", FilterOperator.EQUAL, g);
 		
-		if(results.isEmpty()) {
-	%>
-	
-			<h5>No Results</h5>
-	
-	<%
-	
-		} else {
+				// Initialising query on kind 'Event'
+				Query queryFetchEvents = new Query("Event").setFilter(userFilter); // .addSort("Date", SortDirection.DESCENDING)
 			
-			for (Entity result : pq.asIterable()) {
-				String eventName = (String) result.getProperty("Name");
-				String venue = (String) result.getProperty("Venue");
-				String date = (String) result.getProperty("Date");
-				String startTime = (String) result.getProperty("StartTime");
-				String endTime = (String) result.getProperty("EndTime");
-			
-	%>
-	
+				// Results being fetched as list
+				PreparedQuery pq = datastore.prepare(queryFetchEvents);
+				List<Entity> results = pq.asList(FetchOptions.Builder.withDefaults());
+				
+				if(results.isEmpty()) {
+			%>
 				<div class="col-sm-3 white-text">
-					<p><%= eventName %> @ <%= venue %></p>
-					<p><%= startTime %> - <%= endTime %></p>
-					<p><%= date %></p>
+					<h2>No Events</h2>
 				</div>
-	
-	<%
-			}
-		}
-	%>
+			<%
+			
+				} else {
+					
+					for (Entity result : pq.asIterable()) {
+						String eventName = (String) result.getProperty("Name");
+						String venue = (String) result.getProperty("Venue");
+						String date = (String) result.getProperty("Date");
+						String startTime = (String) result.getProperty("StartTime");
+						String endTime = (String) result.getProperty("EndTime");
+					
+			%>
+			
+						<div class="col-sm-3 white-text">
+							<p><%= eventName %> @ <%= venue %></p>
+							<p><%= startTime %> - <%= endTime %></p>
+							<p><%= date %></p>
+						</div>
+			
+			<%
+			
+					}
+				}
+			
+			%>
+		</div>
 	
 <br><br><br>
 

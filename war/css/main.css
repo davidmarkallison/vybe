@@ -1,12 +1,163 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+
 html {
-	height: 100%
+	min-height: 100%
+	/*position: relative;*/
 }
 body {
-	background: url(../img/mbg.jpg);
-	background-size: cover;
-	color: white;
+  background: url(../img/newbg.jpg) no-repeat center center fixed;
+  width:100%;
+  margin-bottom: 60px;  /* Margin bottom by footer height */
+  background-size: cover;
+  color: white;
 }
 
+/*
+h3 {
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+} */ /* Text shadow */
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  width: 100%;
+}
+
+.foot {
+    margin-left: auto;
+    margin-right: auto;
+    width: 6em
+}
+
+.searchResults {
+  padding-left: 50px;
+  padding-top: 50px;
+}
+table {
+  background-color: white;
+  color: black;
+}
+
+table, td {
+  text-align: center;
+  width: 500px;
+}
+
+form {
+ /* Float both forms to the left */
+ float: left; 
+ /* borders added for visibility. Just remove them */
+ /*border: 1px solid red;*/
+}
+form#updateForm {
+ clear: right;
+ /* with some space to the left of the second form */
+ margin-right: 20px; 
+}
+/* Give an id to the <p> which follows the second form and clear: both */
+p#submit {
+  clear: both;
+}
+/*
+figure {
+    text-align: center;
+    /*display: table; */
+    /*max-width: 100%; /* demo; set some amount (px or %) if you can 
+    margin: 10px auto; /* not needed unless you want centered
+} */
+
+#topnav{
+    background-color: transparent;
+    background: transparent;
+    border-color: transparent;
+    color: white;
+}
+.navbar li { color: #000 } 
+
+.navbar-default {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: white;
+}
+.navbar-default .navbar-brand {
+  color: white;
+  font-family: 'Pacifico', cursive;
+  font-size: 55px;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: white;
+}
+a {
+  display: inline-block;
+  margin-bottom: 8px;
+  width: calc(50% - 4px);
+  margin-right: 8px;
+  text-decoration: none;
+  color: black;
+}
+
+a:nth-of-type(2n) {
+  margin-right: 0;
+}
+
+@media screen and (min-width: 50em) {
+  a {
+    width: calc(25% - 6px);
+  }
+  
+  a:nth-of-type(2n) {
+    margin-right: 8px;
+  }
+  
+  a:nth-of-type(4n) {
+    margin-right: 0;
+  }
+}
+
+a:hover img {
+  transform: scale(1.15);
+}
+
+figure {
+  margin: 0;
+  overflow: hidden;
+}
+
+figcaption {
+  margin-top: 15px;
+}
+
+img {
+  border: none;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  background: #ccc;
+  transition: transform .2s ease-in-out;
+}
+
+.p a {
+  display: inline;
+  font-size: 13px;
+  margin: 0;
+  text-decoration: underline;
+  color: blue;
+}
+
+.p {
+  text-align: center;
+  font-size: 13px;
+  padding-top: 100px;
+}
 
 
 #wrap {
@@ -14,27 +165,26 @@ body {
 }
 
 #main {
-  overflow:auto;
-  padding-bottom:200px; /* this needs to be bigger than footer height*/
+  overflow: auto;
+  padding-bottom: 150px; /* this needs to be bigger than footer height*/
+}
+
+#main .container {
+  width: 100%;
+}
+
+#infoText {
+  background: rgba(49, 75, 123, 0.58);
+  -moz-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  -webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+  box-shadow: 1px 2px 3px rgba(0,0,0,.5);
 }
 
 .footer {
-  position: relative;
-  margin-top: -200px; /* negative value of footer height */
-  height: 150px;
-  clear:both;
-  padding-top:20px;
-} 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: rgba(0,0,0,0);
+}
