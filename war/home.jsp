@@ -26,37 +26,39 @@
 <!--[if IE 8]> <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html lang="EN">
-	<!--<![endif]-->
-	<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>Vybes - Home</title>
-	<meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="apple-touch-icon" href="apple-touch-icon.png">
-	
-	<!-- JAVASCRIPTS -->
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"
-		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-		crossorigin="anonymous"></script>
-	<script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
-	
-	<!-- STYLESHEETS -->
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<style>
-	body {
-		padding-top: 50px;
-		padding-bottom: 20px;
-	}
-	</style>
-	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
-	<link rel="stylesheet" href="css/main.css">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Vybes - Home</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-	<!-- FONTS -->
-	<link rel="stylesheet" href="css/font-awesome.min.css">
-    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
-    
+<!-- JAVASCRIPTS -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+	crossorigin="anonymous"></script>
+<script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+<!-- STYLESHEETS -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<style>
+body {
+	padding-top: 50px;
+	padding-bottom: 20px;
+}
+</style>
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/main.css">
+
+<!-- FONTS -->
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link href='http://fonts.googleapis.com/css?family=Varela+Round'
+	rel='stylesheet' type='text/css'>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.13.1/jquery.validate.min.js"></script>
+
 </head>
 <body>
 
@@ -86,8 +88,10 @@
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#aboutModal"><i class="glyphicon glyphicon-info-sign"></i></a></li>
-					<li><a href="contact.jsp"><i class="glyphicon glyphicon-envelope"></i></a></li>
+					<li><a href="#aboutModal"><i
+							class="glyphicon glyphicon-info-sign"></i></a></li>
+					<li><a href="contact.jsp"><i
+							class="glyphicon glyphicon-envelope"></i></a></li>
 					<%
 						if (user != null) {
 					%>
@@ -105,176 +109,145 @@
 	<br>
 	<br>
 	<br>
-	
-	<!-- <div id="wrap">
-		<div id="main" class="container"> -->
-		
+	<div class="container">
 		<% if (user != null) { %>
-	
-			<div class="container">
-				<div class="panel panel-success">
-					<div class="panel-heading">You Are Logged In To Vybes</div>
-					<div class="panel-body text-success">You are logged into Vybes
-						using your Google Account. Your Google Account and its security is
-						completely handled by Google's world-class, highly-experienced
-						engineers. If you have any problem's with the account and how it
-						works on Vybes, please contact Google. They will look after you. If
-						you wish to log out of Vybes, click the button below.</div>
-				</div>
-				<!-- TODO center this button -->
-				<div class="text-center center-block">
-					<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>"
-						class="btn btn-danger" role="button">Logout</a>
-				</div>
-		
-				<br>
-				<hr>
-				<br>
-				<!-- PAGE BREAKS -->
-		
-				<div class="panel panel-info">
-					<div class="panel-heading">You Are Logged In To Vybes</div>
-					<div class="panel-body text-info">
-		
-						<%
-							// Initialising Datastore
-							DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		
-							// Set the filter to match the user's ID with the Google ID stored as an attribute in the datastore
-							Filter userFilter = new FilterPredicate("GoogleID", FilterOperator.EQUAL, user.getUserId());
-		
-							// Initialising query on kind 'userPreference'
-							Query queryFetchPreferences = new Query("UserPreference").setFilter(userFilter);
-							
-							// Results being fetched as list
-							PreparedQuery pq = datastore.prepare(queryFetchPreferences);
-							List<Entity> results = pq.asList(FetchOptions.Builder.withDefaults());
-							
-							// If the list is empty, the user has not set any preferences
-							if (results.isEmpty()) {
-							
-						%>
-		
-						<p>You have not set any preferences.</p>
-		
-						<%
-						
-							} else {
-							
-						%>
-		
-						<p>You currently have an interest in:</p>
-		
-						<%
-		
-								for (Entity result : pq.asIterable()) {
-									String genre = (String) result.getProperty("GenreInterests");
-									
-									String[] split = genre.split(",");
-									for( String g : split ) {
-						%>
-		
-						<p><%= g %></p>
-		
-						<%
-									}
-								}
-							}
-						%>
-		
-					</div>
-				</div>
-			</div>
-		
-			<% } else {%>
-		
-			<div class="container">
-				<div class="panel panel-danger">
-					<div class="panel-heading">You Are Not Logged In To Vybes</div>
-					<div class="panel-body text-danger">If you wish to use Vybes to
-						plan a night out, all you need to do is log in with a valid Google
-						Account. All of your data is handled by Google and NOT sold on to
-						third parties by Vybes. Your data is stored securely using Google's
-						Cloud Services.</div>
-				</div>
-		
-				<!-- TODO centre this button -->
-				<div class="text-center center-block">
-					<a href="<%= userService.createLoginURL(request.getRequestURI()) %>"
-						class="btn btn-primary" role="button">Log in with Google</a>
-				</div>
-			</div>
-		
-			<% } %>
-		
-			<%
-	    		if(user!= null) {
-		    	// Initialising Datastore
-				DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		
-				// Set the filter to match the user's ID with the Google ID stored as an attribute in the datastore
-				Filter userFilter = new FilterPredicate("GoogleID", FilterOperator.EQUAL, user.getUserId());
-		
-				// Initialising query on kind 'UserPreference'
-				Query queryFetchPreferences = new Query("UserPreference").setFilter(userFilter);
-			
-				// Results being fetched as list
-				PreparedQuery pq = datastore.prepare(queryFetchPreferences);
-				List<Entity> results = pq.asList(FetchOptions.Builder.withDefaults());
 
-			%>
-			
-					<div class="container">
+
+		<div class="panel panel-success">
+			<div class="panel-heading">You Are Logged In To Vybes</div>
+			<div class="panel-body text-success">You are logged into Vybes
+				using your Google Account. Your Google Account and its security is
+				completely handled by Google's world-class, highly-experienced
+				engineers. If you have any problem's with the account and how it
+				works on Vybes, please contact Google. They will look after you. If
+				you wish to log out of Vybes, click the button below.</div>
+		</div>
+		<!-- TODO center this button -->
+		<div class="text-center center-block">
+			<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>"
+				class="btn btn-danger" role="button">Logout</a>
+		</div>
+
+		<br>
+		<hr>
+		<br>
+		<!-- PAGE BREAKS -->
+
+		<div class="panel panel-info">
+			<div class="panel-heading">You Are Logged In To Vybes</div>
+			<div class="panel-body text-info">
+
+				<%
+					// Initialising Datastore
+					DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+					// Set the filter to match the user's ID with the Google ID stored as an attribute in the datastore
+					Filter userFilter = new FilterPredicate("GoogleID", FilterOperator.EQUAL, user.getUserId());
+
+					// Initialising query on kind 'userPreference'
+					Query queryFetchPreferences = new Query("UserPreference").setFilter(userFilter);
+					
+					// Results being fetched as list
+					PreparedQuery pq = datastore.prepare(queryFetchPreferences);
+					List<Entity> results = pq.asList(FetchOptions.Builder.withDefaults());
+					
+					// If the list is empty, the user has not set any preferences
+					if (results.isEmpty()) {
+					
+				%>
+
+				<p>You have not set any preferences.</p>
+
+				<%
 				
-						<!-- LINKS TO PREFERRED GENRES -->
-						<div class="gallery">
-						
-						<%
-						
+					} else {
+					
+				%>
+
+				<p>You currently have an interest in:</p>
+
+				<%
+
 						for (Entity result : pq.asIterable()) {
 							String genre = (String) result.getProperty("GenreInterests");
 							
 							String[] split = genre.split(",");
 							for( String g : split ) {
-								g = g.trim();
-								
-						%>
-				
-							<div class="col-sm-3">
-								<form action="/genre" method="get">
-									<figure>
-										<input type="hidden" name="genre" class="form-check-input" value="<%= g %>">
-										<button value="submit">
-											 <img src="img/<%= g %>.jpg" style="width:100%" alt="Genre: <%= g %>">
-										</button>
-									</figure>
-								</form>
-							</div>
-							
-						<% 
-						
+				%>
+
+				<p><%= g %></p>
+
+				<%
 							}
 						}
-						
-						%>
-						</div>
-					</div>
+					}
+				%>
+
+			</div>
+		</div>
+
+		<!-- LINKS TO PREFERRED GENRES -->
+		<div class="gallery">
+
 			<%
-				
-	    		}
-			
+				for (Entity result : pq.asIterable()) {
+						String genre = (String) result.getProperty("GenreInterests");
+
+						String[] split = genre.split(",");
+						for (String g : split) {
+							g = g.trim();
 			%>
-			
-				
-		<!-- </div><!-- END OF MAIN CLEAR-TOP -->
-	<!-- </div><!-- END OF WRAP -->
+
+			<div class="col-sm-3">
+				<form action="/genre" method="get">
+					<figure>
+						<input type="hidden" name="genre" class="form-check-input"
+							value="<%= g %>">
+						<button value="submit">
+							<img src="img/<%= g %>.jpg" style="width: 100%"
+								alt="Genre: <%= g %>">
+						</button>
+					</figure>
+				</form>
+			</div>
+
+			<% 
+						
+					}
+				}
+						
+			%>
+		</div>
+
+		<% } else {%>
+
+		<div class="panel panel-danger">
+			<div class="panel-heading">You Are Not Logged In To Vybes</div>
+			<div class="panel-body text-danger">If you wish to use Vybes to
+				plan a night out, all you need to do is log in with a valid Google
+				Account. All of your data is handled by Google and NOT sold on to
+				third parties by Vybes. Your data is stored securely using Google's
+				Cloud Services.</div>
+		</div>
+
+		<!-- TODO centre this button -->
+		<div class="text-center center-block">
+			<a href="<%= userService.createLoginURL(request.getRequestURI()) %>"
+				class="btn btn-primary" role="button">Log in with Google</a>
+		</div>
+
+		<% } %>
+
+	</div>
+	<!-- END OF CONTAINER -->
+
+
 	<!-- FOOTER -->
-	
 	<footer class="footer">
-      	<div class="container text-center">
-        	<p>&copy; Vybes 2017</p>
-      	</div>
-    </footer>
+		<div class="container">
+			<p class="muted">&copy; Vybes 2017</p>
+		</div>
+	</footer>
 </body>
 </html>
 

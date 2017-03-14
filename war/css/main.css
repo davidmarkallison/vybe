@@ -2,7 +2,7 @@
 
 html {
 	min-height: 100%
-	/*position: relative;*/
+	position: relative;
 }
 body {
   background: url(../img/newbg.jpg) no-repeat center center fixed;
