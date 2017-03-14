@@ -3,18 +3,28 @@ A Scalable, Cloud-Based Geolocation Service.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development. For using the Google App Engine, we recommend going straight to their site [here.](https://cloud.google.com/appengine/)
 
 ### Prerequisites
 
 The only prerequisites for this project in its current form are listed below.
 
+The Google App Engine SDK.
 ```
-Google App Engine SDK
-Eclipse Neon
-JaveEE 1.7 - The Google App Engine runs on 1.7 but your IDE will probably run on 1.8. Edit the compiler in Window > Preferences > Project Facets
-JavaEE 1.8
+Google App Engine SDK - Requires Java 1.7 to run
 ```
+
+An IDE:
+```
+Eclipse Neon - Requires Java 1.8 to run
+```
+
+Edit the compiler in 
+```
+Window > Preferences > Project Facets
+```
+to change to Java 1.7. Your IDE will still operate as normal.
+
 
 ## Contributing
 
@@ -22,9 +32,11 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Authors
 
-* **David Allison** - *Initial work* - [David Mark Allison on GitHub](https://github.com/davidmarkallison)
+* [**David Allison**](https://twitter.com/noysec) - *Full Stack* - [View David's GitHub](https://github.com/davidmarkallison)
+* [**Tom Robinson**](https://twitter.com/tr228ukc) - *Back End* - [View Tom's GitHub](https://github.com/tomizard)
+* **Mike Wenborn** - *Front End* - [View Mike's GitHub](https://github.com/mjaw3)
 
-See also the list of [contributors](https://github.com/davidmarkallison/vybes/contributors) who participated in this project.
+See the full list of [contributors](https://github.com/davidmarkallison/vybes/contributors) who participated in this project.
 
 ## License
 
@@ -32,5 +44,5 @@ Don't steal this, please.
 
 ## Acknowledgments
 
-* Huankai Chen - *University of Kent* - For the initial guidance on selecting a project.
 * Prof. Frank Z. Wang - *University of Kent* - For helping us along the way.
+* Huankai Chen - *University of Kent* - For the initial guidance on selecting a project.
