@@ -40,6 +40,7 @@
 	integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 	crossorigin="anonymous"></script>
 <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+<script src="js/vendor/bootstrap.min.js"></script>
 
 <!-- STYLESHEETS -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -65,7 +66,7 @@ body {
 	<%
 		UserService userService = UserServiceFactory.getUserService();
 		User user = userService.getCurrentUser();
-	
+
 		if (user != null) {
 			pageContext.setAttribute("user", user);
 		}
@@ -88,9 +89,9 @@ body {
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#aboutModal"><i
+					<li><a class="page-scroll" data-toggle="modal" href="#aboutModal"><i
 							class="glyphicon glyphicon-info-sign"></i></a></li>
-					<li><a href="contact.jsp"><i
+					<li><a class="page-scroll" data-toggle="modal" href="#contactModal"><i
 							class="glyphicon glyphicon-envelope"></i></a></li>
 					<%
 						if (user != null) {
@@ -109,8 +110,11 @@ body {
 	<br>
 	<br>
 	<br>
+
 	<div class="container">
-		<% if (user != null) { %>
+		<%
+			if (user != null) {
+		%>
 
 
 		<div class="panel panel-success">
@@ -124,67 +128,50 @@ body {
 		</div>
 		<!-- TODO center this button -->
 		<div class="text-center center-block">
-			<a href="<%= userService.createLogoutURL(request.getRequestURI()) %>"
+			<a href="<%=userService.createLogoutURL(request.getRequestURI())%>"
 				class="btn btn-danger" role="button">Logout</a>
 		</div>
 
 		<br>
 		<hr>
 		<br>
-		<!-- PAGE BREAKS -->
 
-		<div class="panel panel-info">
-			<div class="panel-heading">You Are Logged In To Vybes</div>
-			<div class="panel-body text-info">
+		<%
+			// Initialising Datastore
+				DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
-				<%
-					// Initialising Datastore
-					DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+				// Set the filter to match the user's ID with the Google ID stored as an attribute in the datastore
+				Filter userFilter = new FilterPredicate("GoogleID", FilterOperator.EQUAL, user.getUserId());
 
-					// Set the filter to match the user's ID with the Google ID stored as an attribute in the datastore
-					Filter userFilter = new FilterPredicate("GoogleID", FilterOperator.EQUAL, user.getUserId());
+				// Initialising query on kind 'userPreference'
+				Query queryFetchPreferences = new Query("UserPreference").setFilter(userFilter);
 
-					// Initialising query on kind 'userPreference'
-					Query queryFetchPreferences = new Query("UserPreference").setFilter(userFilter);
-					
-					// Results being fetched as list
-					PreparedQuery pq = datastore.prepare(queryFetchPreferences);
-					List<Entity> results = pq.asList(FetchOptions.Builder.withDefaults());
-					
-					// If the list is empty, the user has not set any preferences
-					if (results.isEmpty()) {
-					
-				%>
+				// Results being fetched as list
+				PreparedQuery pq = datastore.prepare(queryFetchPreferences);
+				List<Entity> results = pq.asList(FetchOptions.Builder.withDefaults());
 
-				<p>You have not set any preferences.</p>
+				// If the list is empty, the user has not set any preferences
+				if (results.isEmpty()) {
+		%>
 
-				<%
-				
-					} else {
-					
-				%>
+		<h3>You have not set any preferences.</h3>
 
-				<p>You currently have an interest in:</p>
+		<%
+			} else {
+		%>
 
-				<%
+		<h3>You currently have an interest in:</h3>
 
-						for (Entity result : pq.asIterable()) {
-							String genre = (String) result.getProperty("GenreInterests");
-							
-							String[] split = genre.split(",");
-							for( String g : split ) {
-				%>
+		<%
+			for (Entity result : pq.asIterable()) {
+						String genre = (String) result.getProperty("GenreInterests");
 
-				<p><%= g %></p>
-
-				<%
-							}
+						String[] split = genre.split(",");
+						for (String g : split) {
 						}
 					}
-				%>
-
-			</div>
-		</div>
+				}
+		%>
 
 		<!-- LINKS TO PREFERRED GENRES -->
 		<div class="gallery">
@@ -202,25 +189,25 @@ body {
 				<form action="/genre" method="get">
 					<figure>
 						<input type="hidden" name="genre" class="form-check-input"
-							value="<%= g %>">
+							value="<%=g%>">
 						<button value="submit">
-							<img src="img/<%= g %>.jpg" style="width: 100%"
-								alt="Genre: <%= g %>">
+							<img src="img/<%=g%>.jpg" style="width: 100%" alt="Genre: <%=g%>">
 						</button>
 					</figure>
 				</form>
 			</div>
 
-			<% 
-						
+			<%
 					}
 				}
-						
 			%>
 		</div>
 
-		<% } else {%>
+		<%
+			} else {
+		%>
 
+		<!-- IF NOT LOGGED IN -->
 		<div class="panel panel-danger">
 			<div class="panel-heading">You Are Not Logged In To Vybes</div>
 			<div class="panel-body text-danger">If you wish to use Vybes to
@@ -230,21 +217,60 @@ body {
 				Cloud Services.</div>
 		</div>
 
-		<!-- TODO centre this button -->
 		<div class="text-center center-block">
-			<a href="<%= userService.createLoginURL(request.getRequestURI()) %>"
+			<a href="<%=userService.createLoginURL(request.getRequestURI())%>"
 				class="btn btn-primary" role="button">Log in with Google</a>
 		</div>
 
-		<% } %>
+		<%
+			}
+		%>
+		<!-- ABOUT MODAL -->
+		<div  class="modal fade text-info" id="aboutModal" tabindex="-1" role="dialog"
+			aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						<h2 class="text-center">About</h2>
+						<p class="text-justify">Vybes was created with the idea of
+							finding spontaneous nights out to your favourite musical tastes.</p>
+						<br />
+						<button class="btn btn-primary btn-lg center-block"
+							data-dismiss="modal" aria-hidden="true">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END OF ABOUT MODAL -->
 
+		<!-- CONTACT MODAL -->
+		<div id="contactModal" class="modal fade text-info" tabindex="-1" role="dialog"
+			aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body text-center">
+						<h2 class="text-center">Contact Us</h2>
+						<p>David Allison - dma6@kent.ac.uk</p>
+						<p>Thomas Robinson - tr228@kent.ac.uk</p>
+						<p>Michael Wenborn - mjaw3@kent.ac.uk</p>
+						<br />
+						<button class="btn btn-primary btn-lg center-block"
+							data-dismiss="modal" aria-hidden="true">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END OF CONTACT MODAL -->
 	</div>
 	<!-- END OF CONTAINER -->
 
+	<br>
+	<br>
+	<br>
 
 	<!-- FOOTER -->
 	<footer class="footer">
-		<div class="container">
+		<div class="container text-center">
 			<p class="muted">&copy; Vybes 2017</p>
 		</div>
 	</footer>

@@ -29,18 +29,14 @@
 	
 	<%
 			
-		String g = request.getParameter("genre");
-		
-		if(g == ""){
-			response.sendRedirect("homejsp");
-		}
-		
-		if(g == null){
+		String v = request.getParameter("venue");
+			
+		if(v == null){
 			response.sendRedirect("home.jsp");
 		}
 	%>
 	
-	<title><%= g %></title>
+	<title><%= v %></title>
 	
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -110,53 +106,54 @@
 		</div>
 	</nav>
 		        	        
-	<h3 align="center"><%= g %></h3>
-		<div class="container">
-			<%
-				// Initialising Datastore
-				DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+	<h3 align="center"><%= v %></h3>
 		
-				// Set the filter to match the user's ID with the Google ID stored as an attribute in the datastore
-				Filter userFilter = new FilterPredicate("Genre", FilterOperator.EQUAL, g);
+	<%
+		// Initialising Datastore
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+		// Set the filter to match the the current venue with the corresponding venue in the datastore
+		Filter venueFilter = new FilterPredicate("Venue", FilterOperator.EQUAL, v);
+
+		// Initialising query on kind 'Venue'
+		Query queryFetchVenue = new Query("Venue").setFilter(venueFilter); // .addSort("Date", SortDirection.DESCENDING)
+	
+		// Results being fetched as list
+		PreparedQuery pq = datastore.prepare(queryFetchVenue);
+		List<Entity> results = pq.asList(FetchOptions.Builder.withDefaults());
 		
-				// Initialising query on kind 'Event'
-				Query queryFetchEvents = new Query("Event").setFilter(userFilter); // .addSort("Date", SortDirection.DESCENDING)
+		if(results.isEmpty()) {
+	%>
+	
+			<h5>No Results</h5>
+	
+	<%
+	
+		} else {
 			
-				// Results being fetched as list
-				PreparedQuery pq = datastore.prepare(queryFetchEvents);
-				List<Entity> results = pq.asList(FetchOptions.Builder.withDefaults());
-				
-				if(results.isEmpty()) {
-			%>
+			for (Entity result : pq.asIterable()) {
+				String venueName = (String) result.getProperty("Name");
+				String description = (String) result.getProperty("Description");
+				String address = (String) result.getProperty("Address");
+				String phone = (String) result.getProperty("Phone");
+				String email = (String) result.getProperty("Email");
+				String openingHours = (String) result.getProperty("OpeningHours");
+			
+	%>
+	
 				<div class="col-sm-3 white-text">
-					<h2>No Events</h2>
+					<p><%= venueName %></p>
+					<p><%= description %></p>
+					<p><%= address %></p>
+					<p><%= phone %></p>
+					<p><%= email %></p>
+					<p><%= openingHours %></p>
 				</div>
-			<%
-			
-				} else {
-					
-					for (Entity result : pq.asIterable()) {
-						String eventName = (String) result.getProperty("Name");
-						String venue = (String) result.getProperty("Venue");
-						String date = (String) result.getProperty("Date");
-						String startTime = (String) result.getProperty("StartTime");
-						String endTime = (String) result.getProperty("EndTime");
-					
-			%>
-			
-						<div class="col-sm-3 white-text">
-							<p><%= eventName %> @ <%= venue %></p>
-							<p><%= startTime %> - <%= endTime %></p>
-							<p><%= date %></p>
-						</div>
-			
-			<%
-			
-					}
-				}
-			
-			%>
-		</div>
+	
+	<%
+			}
+		}
+	%>
 	
 <br><br><br>
 
@@ -166,6 +163,7 @@
 			<p class="muted">&copy; Vybes 2017</p>
 		</div>
 	</footer>
+	
 	
 	<script
 		src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

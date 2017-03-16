@@ -24,6 +24,16 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
         <servlet-name>CreateVenueServlet</servlet-name>
         <url-pattern>/createVenue</url-pattern>
     </servlet-mapping>
+    
+    <!-- VIEWING VENUE -->
+    <servlet>
+        <servlet-name>VenueServlet</servlet-name>
+        <servlet-class>com.ukc.vybes.VenueServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>VenueServlet</servlet-name>
+        <url-pattern>/venue</url-pattern>
+    </servlet-mapping>
 	
 	<!-- CREATING EVENTS -->
     <servlet>
