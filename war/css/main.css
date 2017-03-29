@@ -182,3 +182,7 @@ img {
 .modal-backdrop {
 	z-index: -5;
 }
+
+a .thumbnail {
+	width: 100%;
+}

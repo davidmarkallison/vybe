@@ -66,9 +66,9 @@ body {
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a class="page-scroll" data-toggle="modal"
-						href="#aboutModal">About</a></li>
+						href="#aboutModal"><i class="glyphicon glyphicon-info-sign"></i></a></li>
 					<li><a class="page-scroll" data-toggle="modal"
-						href="#contactModal">Contact</a></li>
+						href="#contactModal"><i class="glyphicon glyphicon-envelope"></i></a></li>
 				</ul>
 			</div>
 			<!--/.navbar-collapse -->
@@ -76,7 +76,7 @@ body {
 	</nav>
 
 	<div class="container">
-	
+
 		<!--MAIN LANDING PAGE CONTENT -->
 		<header>
 			<div class="container">
@@ -97,20 +97,35 @@ body {
 		<section style="margin-top: 350px;" id="one">
 			<div class="container-fluid">
 				<div class="row">
-					<div id="infoText" class="col-md-4 col-md-offset-2">
+					<div id="infoText" class="col-md-4 ">
 						<h3>What is</h3>
+
 						<h3 style="font-family: 'Pacifico', cursive; margin-left: 10px;">Vybes?</h3>
+
 						<p style="padding-top: 70px;">Social events are being
 							organised at the last minute, often resulting in evenings which
 							are not enjoyable. Our web application allows users to avoid a
 							bad night out by allowing them to easily browse a list of venues
 							in their local area based on their preferred music genre.</p>
-						<br>
+						<br> <br>
+
 						<h3>Click the button below to find your Vybe...</h3>
-						<a href="<%= userService.createLoginURL("/home.jsp") %>" class="btn btn-primary" role="button">Log in with Google</a>
+						<br> <br>
+						<div class="text-center col-sm-12">
+							<a href="<%=userService.createLoginURL("home.jsp")%>"
+								class="btn btn-primary col-sm-12" role="button">Log in with
+								Google!</a><br>
+							<br>
+						</div>
+						<br>
+						<br>
+
 					</div>
-					<div class="col-md-4 ">
-						<img style="width: 250px;" src="img\phone2.png">
+					<div class="col-sm-4">
+						<img src="img\1.jpg"> <img src="img\2.jpg">
+					</div>
+					<div class="col-sm-4">
+						<img style="width: 250px;" src="img\3.jpg">
 					</div>
 				</div>
 			</div>
@@ -118,7 +133,7 @@ body {
 		<!-- END OF LANDING PAGE CONTENT -->
 
 		<!-- ABOUT MODAL -->
-		<div  class="modal fade" id="aboutModal" tabindex="-1" role="dialog"
+		<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog"
 			aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -126,7 +141,7 @@ body {
 						<h2 class="text-center">About</h2>
 						<p class="text-justify">Vybes was created with the idea of
 							finding spontaneous nights out to your favourite musical tastes.</p>
-						<br />
+						<br>
 						<button class="btn btn-primary btn-lg center-block"
 							data-dismiss="modal" aria-hidden="true">Close</button>
 					</div>
@@ -153,25 +168,25 @@ body {
 			</div>
 		</div>
 		<!-- END OF CONTACT MODAL -->
-	
+
 	</div>
 	<!-- END OF MAIN CONTENT CONTAINER -->
 
 	<br>
-	
+
 	<!-- FOOTER -->
 	<footer class="footer">
 		<div class="container text-center">
 			<p class="muted">&copy; Vybes 2017</p>
 		</div>
 	</footer>
-	
+
 	<!-- JQUERYUI -->
 	<script src="http://code.jquery.com/ui/1.12.0/jquery-ui.min.js"
 		integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E="
 		crossorigin="anonymous"></script>
 	<script src="js/vendor/bootstrap.min.js"></script>
 	<script src="js/main.js"></script>
-	
+
 </body>
 </html>

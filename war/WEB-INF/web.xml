@@ -1,83 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xmlns="http://java.sun.com/xml/ns/javaee"
-xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-	
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+
 	<!-- MAIN SERVLET -->
 	<servlet>
-		<servlet-name>Vybes</servlet-name>
+		<servlet-name>VybesServlet</servlet-name>
 		<servlet-class>com.ukc.vybes.VybesServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Vybes</servlet-name>
+		<servlet-name>VybesServlet</servlet-name>
 		<url-pattern>/vybes</url-pattern>
 	</servlet-mapping>
-	
+
 	<!-- CREATING VENUES -->
-    <servlet>
-        <servlet-name>CreateVenueServlet</servlet-name>
-        <servlet-class>com.ukc.vybes.CreateVenueServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CreateVenueServlet</servlet-name>
-        <url-pattern>/createVenue</url-pattern>
-    </servlet-mapping>
-    
-    <!-- VIEWING VENUE -->
-    <servlet>
-        <servlet-name>VenueServlet</servlet-name>
-        <servlet-class>com.ukc.vybes.VenueServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>VenueServlet</servlet-name>
-        <url-pattern>/venue</url-pattern>
-    </servlet-mapping>
-	
+	<servlet>
+		<servlet-name>CreateVenueServlet</servlet-name>
+		<servlet-class>com.ukc.vybes.CreateVenueServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CreateVenueServlet</servlet-name>
+		<url-pattern>/createVenue</url-pattern>
+	</servlet-mapping>
+
+	<!-- VIEWING VENUE -->
+	<servlet>
+		<servlet-name>VenueServlet</servlet-name>
+		<servlet-class>com.ukc.vybes.VenueServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>VenueServlet</servlet-name>
+		<url-pattern>/venue</url-pattern>
+	</servlet-mapping>
+
 	<!-- CREATING EVENTS -->
-    <servlet>
-        <servlet-name>CreateEventServlet</servlet-name>
-        <servlet-class>com.ukc.vybes.CreateEventServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CreateEventServlet</servlet-name>
-        <url-pattern>/createEvent</url-pattern>
-    </servlet-mapping>
-    
-    <!-- CREATING GENRES -->
-    <servlet>
-        <servlet-name>CreateGenreServlet</servlet-name>
-        <servlet-class>com.ukc.vybes.CreateGenreServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CreateGenreServlet</servlet-name>
-        <url-pattern>/createGenre</url-pattern>
-    </servlet-mapping>
-    
-    <!-- VIEWING GENRE -->
-    <servlet>
-        <servlet-name>GenreServlet</servlet-name>
-        <servlet-class>com.ukc.vybes.GenreServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>GenreServlet</servlet-name>
-        <url-pattern>/genre</url-pattern>
-    </servlet-mapping>
-    
-    <!-- SETTING PREFERENCES -->
-    <servlet>
-    	<servlet-name>SetPreferencesServlet</servlet-name>
-    	<servlet-class>com.ukc.vybes.SetPreferencesServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-    	<servlet-name>SetPreferencesServlet</servlet-name>	
-    	<url-pattern>/setPreferences</url-pattern>
-    </servlet-mapping>
-    
-    <!-- WELCOME FILE LIST -->
-    <welcome-file-list>
-		<welcome-file>home.jsp</welcome-file>
+	<servlet>
+		<servlet-name>CreateEventServlet</servlet-name>
+		<servlet-class>com.ukc.vybes.CreateEventServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CreateEventServlet</servlet-name>
+		<url-pattern>/createEvent</url-pattern>
+	</servlet-mapping>
+
+	<!-- CREATING GENRES -->
+	<servlet>
+		<servlet-name>CreateGenreServlet</servlet-name>
+		<servlet-class>com.ukc.vybes.CreateGenreServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CreateGenreServlet</servlet-name>
+		<url-pattern>/createGenre</url-pattern>
+	</servlet-mapping>
+
+	<!-- VIEWING GENRE -->
+	<servlet>
+		<servlet-name>GenreServlet</servlet-name>
+		<servlet-class>com.ukc.vybes.GenreServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GenreServlet</servlet-name>
+		<url-pattern>/genre</url-pattern>
+	</servlet-mapping>
+
+	<!-- SETTING PREFERENCES -->
+	<servlet>
+		<servlet-name>SetPreferencesServlet</servlet-name>
+		<servlet-class>com.ukc.vybes.SetPreferencesServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SetPreferencesServlet</servlet-name>
+		<url-pattern>/setPreferences</url-pattern>
+	</servlet-mapping>
+
+	<!-- WELCOME FILE LIST -->
+	<welcome-file-list>
+		<welcome-file>welcome.jsp</welcome-file>
 	</welcome-file-list>
-	
+
 </web-app>

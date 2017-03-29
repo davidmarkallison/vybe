@@ -75,6 +75,7 @@ body {
 	<!--[if lt IE 8]>
     	<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 	<![endif]-->
+
 	<nav id="topnav" class="navbar navbar-default">
 		<div class="container">
 			<div class="navbar-header">
@@ -89,10 +90,10 @@ body {
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a class="page-scroll" data-toggle="modal" href="#aboutModal"><i
-							class="glyphicon glyphicon-info-sign"></i></a></li>
-					<li><a class="page-scroll" data-toggle="modal" href="#contactModal"><i
-							class="glyphicon glyphicon-envelope"></i></a></li>
+					<li><a class="page-scroll" data-toggle="modal"
+						href="#aboutModal"><i class="glyphicon glyphicon-info-sign"></i></a></li>
+					<li><a class="page-scroll" data-toggle="modal"
+						href="#contactModal"><i class="glyphicon glyphicon-envelope"></i></a></li>
 					<%
 						if (user != null) {
 					%>
@@ -112,10 +113,10 @@ body {
 	<br>
 
 	<div class="container">
+
 		<%
 			if (user != null) {
 		%>
-
 
 		<div class="panel panel-success">
 			<div class="panel-heading">You Are Logged In To Vybes</div>
@@ -126,7 +127,7 @@ body {
 				works on Vybes, please contact Google. They will look after you. If
 				you wish to log out of Vybes, click the button below.</div>
 		</div>
-		<!-- TODO center this button -->
+
 		<div class="text-center center-block">
 			<a href="<%=userService.createLogoutURL(request.getRequestURI())%>"
 				class="btn btn-danger" role="button">Logout</a>
@@ -174,7 +175,7 @@ body {
 		%>
 
 		<!-- LINKS TO PREFERRED GENRES -->
-		<div class="gallery">
+		<div class="center-block">
 
 			<%
 				for (Entity result : pq.asIterable()) {
@@ -185,21 +186,15 @@ body {
 							g = g.trim();
 			%>
 
-			<div class="col-sm-3">
-				<form action="/genre" method="get">
-					<figure>
-						<input type="hidden" name="genre" class="form-check-input"
-							value="<%=g%>">
-						<button value="submit">
-							<img src="img/<%=g%>.jpg" style="width: 100%" alt="Genre: <%=g%>">
-						</button>
-					</figure>
-				</form>
+			<div class="col-xs-12 col-sm-6 col-md-3">
+				<a href="/genre?genre=<%=g%>" class="thumbnail" style="width: 100%">
+					<img src="img/<%=g%>.jpg" style="width: 100%" alt="Genre: <%=g%>">
+				</a>
 			</div>
 
 			<%
-					}
 				}
+					}
 			%>
 		</div>
 
@@ -226,8 +221,8 @@ body {
 			}
 		%>
 		<!-- ABOUT MODAL -->
-		<div  class="modal fade text-info" id="aboutModal" tabindex="-1" role="dialog"
-			aria-hidden="true">
+		<div class="modal fade text-info" id="aboutModal" tabindex="-1"
+			role="dialog" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-body">
@@ -244,8 +239,8 @@ body {
 		<!-- END OF ABOUT MODAL -->
 
 		<!-- CONTACT MODAL -->
-		<div id="contactModal" class="modal fade text-info" tabindex="-1" role="dialog"
-			aria-hidden="true">
+		<div id="contactModal" class="modal fade text-info" tabindex="-1"
+			role="dialog" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-body text-center">
@@ -253,7 +248,7 @@ body {
 						<p>David Allison - dma6@kent.ac.uk</p>
 						<p>Thomas Robinson - tr228@kent.ac.uk</p>
 						<p>Michael Wenborn - mjaw3@kent.ac.uk</p>
-						<br />
+						<br>
 						<button class="btn btn-primary btn-lg center-block"
 							data-dismiss="modal" aria-hidden="true">Close</button>
 					</div>

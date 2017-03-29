@@ -84,10 +84,10 @@ a {
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a class="page-scroll" data-toggle="modal" href="#aboutModal"><i
-							class="glyphicon glyphicon-info-sign"></i></a></li>
-					<li><a class="page-scroll" data-toggle="modal" href="#contactModal"><i
-							class="glyphicon glyphicon-envelope"></i></a></li>
+					<li><a class="page-scroll" data-toggle="modal"
+						href="#aboutModal"><i class="glyphicon glyphicon-info-sign"></i></a></li>
+					<li><a class="page-scroll" data-toggle="modal"
+						href="#contactModal"><i class="glyphicon glyphicon-envelope"></i></a></li>
 				</ul>
 			</div>
 			<!--/.navbar-collapse -->
@@ -164,9 +164,9 @@ a {
 					}
 					
 					%>
-					
+
 				</div>
-			
+
 				<div class="center-block">
 					<button value="submit" class="btn btn-success">Submit
 						Changes</button>
@@ -175,8 +175,8 @@ a {
 		</div>
 
 		<!-- ABOUT MODAL -->
-		<div  class="modal fade text-info" id="aboutModal" tabindex="-1" role="dialog"
-			aria-hidden="true">
+		<div class="modal fade text-info" id="aboutModal" tabindex="-1"
+			role="dialog" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-body">
@@ -191,10 +191,10 @@ a {
 			</div>
 		</div>
 		<!-- END OF ABOUT MODAL -->
-	
+
 		<!-- CONTACT MODAL -->
-		<div id="contactModal" class="modal fade text-info" tabindex="-1" role="dialog"
-			aria-hidden="true">
+		<div id="contactModal" class="modal fade text-info" tabindex="-1"
+			role="dialog" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-body text-center">
@@ -210,12 +210,12 @@ a {
 			</div>
 		</div>
 		<!-- END OF CONTACT MODAL -->
-		
+
 	</div>
 	<!-- END OF MAIN CONTENT -->
-	
+
 	<br>
-	
+
 	<!-- FOOTER -->
 	<footer class="footer">
 		<div class="container text-center">

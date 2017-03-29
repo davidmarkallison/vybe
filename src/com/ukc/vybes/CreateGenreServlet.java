@@ -1,13 +1,9 @@
 package com.ukc.vybes;
+
 import java.io.IOException;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
-
-//import com.google.appengine.api.users.UserService;
-//import com.google.appengine.api.users.UserServiceFactory;
-
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,29 +12,39 @@ import javax.servlet.http.HttpServletResponse;
 
 public class CreateGenreServlet extends HttpServlet {
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.
+	 * HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-		
-		// Initialising DataStore
-        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
-        
-        String name = req.getParameter("Name"); 				// Get Genre Name
-        String desc = req.getParameter("Description"); 			// Get Description of the Genre
-        String examples = req.getParameter("ExampleArtists");	// Get Example Artists 
-        String parentGenre = req.getParameter("ParentGenre"); 	// Is this a subgenre    
-        	
-		
-        Entity genre = new Entity("Genre");
+		// Initialise DataStore
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
-		genre.setProperty("Name", name); 					// Set Venue Name
-		genre.setProperty("Description", desc);				// Set Description of the Venue
-		genre.setProperty("ExampleArtists", examples);				// Set Venue Address
-		genre.setProperty("ParentGenre", parentGenre);					// Set Phone Number
-        
+		// Get parameters from creategenre.jsp
+		// Set parameters as local variables
+		String name = req.getParameter("Name");
+		String desc = req.getParameter("Description");
+		String examples = req.getParameter("ExampleArtists");
+		String parentGenre = req.getParameter("ParentGenre");
+
+		// Create Genre Entity
+		Entity genre = new Entity("Genre");
+
+		// Set Entity's properties using local variables
+		genre.setProperty("Name", name);
+		genre.setProperty("Description", desc);
+		genre.setProperty("ExampleArtists", examples);
+		genre.setProperty("ParentGenre", parentGenre);
+
+		// Update/Add Entity to Datastore
 		datastore.put(genre);
 
-        resp.sendRedirect("/creategenre.jsp");
-       
-   }
+		// Redirect to home page
+		resp.sendRedirect("/home.jsp");
+
+	}
 
 }
